@@ -19,7 +19,7 @@ public class SpotLight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        ToggleLight();
     }
 
     void ToggleLight()
@@ -32,13 +32,13 @@ public class SpotLight : MonoBehaviour
     }
 
 
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (Input.GetKey(KeyCode.F))
-    //    {
-    //        light.enabled = !light.enabled;
-    //        Debug.Log("Light Toggled");
-    //    }
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            light.enabled = !light.enabled;
+            Debug.Log("Light Toggled");
+        }
+    }
 
 }
