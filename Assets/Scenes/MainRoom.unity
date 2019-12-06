@@ -272,6 +272,10 @@ PrefabInstance:
       propertyPath: advancedSettings.airControl
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
+      propertyPath: movementSettings.RunMultiplier
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
       propertyPath: m_RenderingPath
       value: -1
@@ -322,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e660b84d946a243b619ebb106cf628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distanceNeeded: 2
 --- !u!64 &146457231
 MeshCollider:
   m_ObjectHideFlags: 0

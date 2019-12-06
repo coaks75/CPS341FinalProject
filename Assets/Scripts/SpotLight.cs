@@ -24,7 +24,9 @@ public class SpotLight : MonoBehaviour
 
     void ToggleLight()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        FlashLight fl = gameObject.GetComponentInParent(typeof(FlashLight)) as FlashLight;
+
+        if (Input.GetKeyDown(KeyCode.F) && fl.getDistanceToPlayer() < fl.distanceNeeded)
         {
             light.enabled = !light.enabled;
             Debug.Log("Light Toggled");
