@@ -31,14 +31,4 @@ public class SpotLight : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKey(KeyCode.F))
-        {
-            light.enabled = !light.enabled;
-            Debug.Log("Light Toggled");
-        }
-    }
-
 }
