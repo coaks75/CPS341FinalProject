@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -102,6 +103,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public Equippable[] equipped;                            // These are all of the equippable objects that we have equipped
         private DoorScript[] doors;                               // These are all of the doors in the game
         private int equippedIndex;                                // This is basically the number of items we have equipped
+        private int score;                                        // This is the players score
+        public Text scoreText;
+        public Text errorText;
+        public Text goodJobText;
+        public int errorMsgFrameLimit;
+        private int errorMsgFrameCount;
+        public int goodJobFrameLimit;
+        private int goodJobFrameCount;
 
         public Vector3 Velocity
         {
@@ -149,6 +158,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             equippedIndex = 0;
 
+            score = 0;
+
+            errorMsgFrameCount = 0;
+
+            errorText.text = "";
+
+            goodJobFrameCount = 0;
+
+            goodJobText.text = "";
+
         }
 
 
@@ -166,13 +185,38 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void FixedUpdate()
         {
 
+            // We want to update the score constantly
+            scoreText.text = "Score: " + score.ToString();
+
             // This checks if we right click the mouse
             if (Input.GetMouseButtonDown(1))
             {
                 Equip();
             }
 
-            CheckDoors();
+
+            if (errorText.text == "" || errorMsgFrameCount >= errorMsgFrameLimit)
+            {
+                errorMsgFrameCount = 0;
+                errorText.text = "";
+                errorText.enabled = false;
+            }
+            else
+            {
+                errorMsgFrameCount++;
+            }
+
+            if (goodJobText.text == "" || goodJobFrameCount >= goodJobFrameLimit)
+            {
+                goodJobFrameCount = 0;
+                goodJobText.text = "";
+                goodJobText.enabled = false;
+            }
+            else
+            {
+                goodJobFrameCount++;
+            }
+
 
             GroundCheck();
             Vector2 input = GetInput();
@@ -367,6 +411,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     bool foundIndex = false;
                     equipped[equippedIndex] = current;
                     equippedIndex += 1;
+                    score += current.points;
+                    goodJobText.text = "Nice! You've obtained the " + current.name + " for " + current.points + " points!";
+                    goodJobText.enabled = true;
                     done = true;
                     Debug.Log("Just equipped " + current.name);
                 }
@@ -374,41 +421,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
         }
 
-        /**
-         * This is a method to check all of our doors if they are being clicked on and if we can open them
-         */
-        private void CheckDoors()
-        {
-            //bool openedDoor = false;
-            //for (int i = 0; i < doors.Length; i++)
-            //{
-            //    DoorScript currentDoor = doors[i];
-            //    if (currentDoor.opened == false)
-            //    {
-            //        bool done = false;
-
-            //        Debug.Log("Number of doors: " + doors.Length);
-
-            //        for (int j = 0; j < equipped.Length && !done; j++)
-            //        {
-            //            Equippable currentEquipped = equipped[j];
-            //            if (currentEquipped != null)
-            //            {
-            //                Debug.Log("Equipped name: " + currentEquipped.name);
-            //                Debug.Log("Needed name: " + currentDoor.objectNeeded.name);
-
-            //                if (currentEquipped.name == currentDoor.objectNeeded.name)
-            //                {
-            //                    currentDoor.AllowOpen();
-            //                    openedDoor = true;
-            //                    done = true;
-            //                }
-            //            }
-            //        }
-            //    }
-
-            //}
-        }
 
     }
 }
