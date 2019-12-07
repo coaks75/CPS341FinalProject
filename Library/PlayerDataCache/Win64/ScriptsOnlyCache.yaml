@@ -2,7 +2,9 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - FlashLight
+    - PauseMenuScript
     - SpotLight
+    - TitleScreen
     - UnityStandardAssets.Characters.FirstPerson.HeadBob
     - UnityStandardAssets.Characters.FirstPerson.PlayerController
     UnityEditor.TestRunner.dll:
@@ -11,10 +13,13 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
     - UnityEngine.UI.Outline
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Shadow
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/MainRoom.unity:
@@ -59,22 +64,50 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 10462}
+      Script: {instanceID: 19238}
     - Class: 114
-      Script: {instanceID: 10538}
+      Script: {instanceID: 19406}
     - Class: 114
-      Script: {instanceID: 10738}
+      Script: {instanceID: 19452}
     - Class: 114
-      Script: {instanceID: 10978}
+      Script: {instanceID: 19790}
+    - Class: 114
+      Script: {instanceID: 19856}
+    - Class: 114
+      Script: {instanceID: 20000}
+    - Class: 114
+      Script: {instanceID: 20082}
+    - Class: 114
+      Script: {instanceID: 20280}
+    - Class: 114
+      Script: {instanceID: 20290}
+    - Class: 114
+      Script: {instanceID: 20524}
+    - Class: 114
+      Script: {instanceID: 20772}
+    - Class: 114
+      Script: {instanceID: 21154}
+    - Class: 114
+      Script: {instanceID: 54680}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 134
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
@@ -98,24 +131,32 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9714}
+      Script: {instanceID: 19238}
     - Class: 114
-      Script: {instanceID: 9880}
+      Script: {instanceID: 19406}
     - Class: 114
-      Script: {instanceID: 10320}
+      Script: {instanceID: 19452}
     - Class: 114
-      Script: {instanceID: 10752}
+      Script: {instanceID: 19856}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 19966}
     - Class: 114
-      Script: {instanceID: 11536}
+      Script: {instanceID: 20280}
     - Class: 114
-      Script: {instanceID: 11592}
+      Script: {instanceID: 20304}
+    - Class: 114
+      Script: {instanceID: 20772}
+    - Class: 114
+      Script: {instanceID: 21096}
+    - Class: 114
+      Script: {instanceID: 21154}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -478,6 +519,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.CrossPlatformInput
     className: Joystick
+  - hash:
+      serializedVersion: 2
+      Hash: bb67cc2472f8da2273caf487bb2301b6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TitleScreen
   - hash:
       serializedVersion: 2
       Hash: 4f631fd718256a8c69483c396671a274
@@ -1090,6 +1137,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: AutoMobileShaderSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 930b2a7c015542327cee6af349728cdd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenuScript
   platform: 19
   scenePathNames:
   - Assets/Scenes/TitleScreen.unity

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
@@ -20,8 +21,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
             [HideInInspector] public float CurrentTargetSpeed = 8f;
 
-
-            private AudioSource m_AudioSource;
 
 #if !MOBILE_INPUT
             private bool m_Running;
@@ -82,7 +81,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public Camera cam;
         public MovementSettings movementSettings = new MovementSettings();
-        public MouseLook mouseLook = new MouseLook();
+        public static MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
 
 
@@ -98,6 +97,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
         private Vector2 previousStepPosition;                     // This is so we only play a step sound when we are of specified distance away
         public float distanceForStepNoise;
+
 
 
         public Vector3 Velocity
@@ -126,7 +126,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #endif
             }
         }
-
+        
 
         private void Start()
         {
@@ -137,6 +137,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_AudioSource = GetComponent<AudioSource>();
 
             previousStepPosition = new Vector2(transform.position.x, transform.position.z);
+
+            //mouseLook.lockCursor = false;
 
             Debug.Log("Geoff");
 
@@ -156,6 +158,29 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+
+            ///** Check if we are paused, and if so, lock the mouse cursor. */
+            //if (PauseMenuScript.gameIsPaused)
+            //{
+            //    mouseLook.lockCursor = false;
+            //    Debug.Log("Unlocked cursor");
+            //}
+            //else
+            //{
+            //    mouseLook.lockCursor = true;
+            //    Debug.Log("Cursor locked");
+            //}
+
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                SceneManager.LoadScene("Room2");
+            }
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                SceneManager.LoadScene("MainRoom");
+            }
+
+
             GroundCheck();
             Vector2 input = GetInput();
 
@@ -210,6 +235,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
             m_Jump = false;
+
         }
 
         private void PlayLandingSound()
@@ -324,5 +350,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = false;
             }
         }
+
     }
 }

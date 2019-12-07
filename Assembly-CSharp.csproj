@@ -74,8 +74,10 @@
     <Compile Include="Assets\Scripts\FlashLight.cs" />
     <Compile Include="Assets\Scripts\HeadBob.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SpotLight.cs" />
+    <Compile Include="Assets\Scripts\TitleScreen.cs" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/Projects/CPS341FinalProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
