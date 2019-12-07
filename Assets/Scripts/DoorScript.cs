@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class DoorScript : MonoBehaviour
 {
@@ -19,12 +20,19 @@ public class DoorScript : MonoBehaviour
     /** A variable for if we started loweing the door already. */
     private bool startedLowering;
 
+    /** A variable to say if we are opened already. */
+    public bool opened;
+
+    public PlayerController player;
+
 
     private void Start()
     {
         audio = GetComponent<AudioSource>();
         shouldLower = false;
         startedLowering = false;
+        opened = false;
+        player = GameObject.FindObjectOfType<PlayerController>();
     }
 
 
@@ -32,13 +40,25 @@ public class DoorScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || startedLowering == true)
         {
-            if (shouldLower)
+
+            bool doIt = false;
+
+            foreach (Equippable v in player.equipped)
+            {
+                if (v.name == objectNeeded.name)
+                {
+                    doIt = true;
+                }
+            }
+
+            if (doIt && transform.position.y >= lowestDistance)
             {
                 transform.Translate(Vector3.down * Time.deltaTime, Space.World);
                 startedLowering = true;
+                opened = true;
                 if (!audio.isPlaying)
                 {
-                    //audio.Play();
+                    audio.Play();
                 }
                 Debug.Log("Trying to drop door");
             }
@@ -62,18 +82,18 @@ public class DoorScript : MonoBehaviour
      * This method is to lower the door when you get the key.
      * And it will hopefully be done slowly...
      */
-    public void AllowOpen()
-    {
-        if (transform.position.y >= lowestDistance)
-        {
-            shouldLower = true;
-            //Debug.Log("Setting should lower true");
-        }
-        else
-        {
-            shouldLower = false;
-        }
-    }
+    //public void AllowOpen()
+    //{
+    //    if (transform.position.y >= lowestDistance)
+    //    {
+    //        shouldLower = true;
+    //        //Debug.Log("Setting should lower true");
+    //    }
+    //    else
+    //    {
+    //        shouldLower = false;
+    //    }
+    //}
 
 
 }

@@ -99,7 +99,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public float distanceForStepNoise;
         public float equipDistance;                               // This is the distance needed to equip something
         private Equippable[] equippables;                         // This is all of the objects with the tag 'equippable'
-        private Equippable[] equipped;                            // These are all of the equippable objects that we have equipped
+        public Equippable[] equipped;                            // These are all of the equippable objects that we have equipped
         private DoorScript[] doors;                               // These are all of the doors in the game
         private int equippedIndex;                                // This is basically the number of items we have equipped
 
@@ -370,7 +370,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     done = true;
                     Debug.Log("Just equipped " + current.name);
                 }
-                
+
             }
         }
 
@@ -379,33 +379,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
          */
         private void CheckDoors()
         {
-            bool openedDoor = false;
-            for (int i = 0; i < doors.Length; i++)
-            {
-                DoorScript currentDoor = doors[i];
+            //bool openedDoor = false;
+            //for (int i = 0; i < doors.Length; i++)
+            //{
+            //    DoorScript currentDoor = doors[i];
+            //    if (currentDoor.opened == false)
+            //    {
+            //        bool done = false;
 
-                bool done = false;
+            //        Debug.Log("Number of doors: " + doors.Length);
 
-                Debug.Log("Number of doors: " + doors.Length);
+            //        for (int j = 0; j < equipped.Length && !done; j++)
+            //        {
+            //            Equippable currentEquipped = equipped[j];
+            //            if (currentEquipped != null)
+            //            {
+            //                Debug.Log("Equipped name: " + currentEquipped.name);
+            //                Debug.Log("Needed name: " + currentDoor.objectNeeded.name);
 
-                for (int j = 0; j < equipped.Length && !done; j++)
-                {
-                    Equippable currentEquipped = equipped[j];
-                    if (currentEquipped != null)
-                    {
-                        Debug.Log("Equipped name: " + currentEquipped.name);
-                        Debug.Log("Needed name: " + currentDoor.objectNeeded.name);
+            //                if (currentEquipped.name == currentDoor.objectNeeded.name)
+            //                {
+            //                    currentDoor.AllowOpen();
+            //                    openedDoor = true;
+            //                    done = true;
+            //                }
+            //            }
+            //        }
+            //    }
 
-                        if (currentEquipped.name == currentDoor.objectNeeded.name)
-                        {
-                            currentDoor.AllowOpen();
-                            openedDoor = true;
-                            done = true;
-                        }
-                    }
-                }
-
-            }
+            //}
         }
 
     }
