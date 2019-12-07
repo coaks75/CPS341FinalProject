@@ -100,8 +100,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public float equipDistance;                               // This is the distance needed to equip something
         private Equippable[] equippables;                         // This is all of the objects with the tag 'equippable'
         private Equippable[] equipped;                            // These are all of the equippable objects that we have equipped
-
-
+        private DoorScript[] doors;                               // These are all of the doors in the game
+        private int equippedIndex;                                // This is basically the number of items we have equipped
 
         public Vector3 Velocity
         {
@@ -129,7 +129,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 #endif
             }
         }
-        
+
 
         private void Start()
         {
@@ -142,6 +142,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             previousStepPosition = new Vector2(transform.position.x, transform.position.z);
 
             equippables = FindObjectsOfType<Equippable>();
+
+            equipped = new Equippable[equippables.Length];
+
+            doors = FindObjectsOfType<DoorScript>();
+
+            equippedIndex = 0;
 
         }
 
@@ -165,6 +171,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 Equip();
             }
+
+            CheckDoors();
 
             GroundCheck();
             Vector2 input = GetInput();
@@ -340,7 +348,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         /**
          * This is a method to try and equip a nearby item.
          */
-         private void Equip()
+        private void Equip()
         {
 
             // We will use this variable so that we can only equip one item per click
@@ -356,14 +364,49 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     current.transform.parent = camera;
                     current.transform.position = camera.position;
                     current.transform.rotation = camera.rotation;
+                    bool foundIndex = false;
+                    equipped[equippedIndex] = current;
+                    equippedIndex += 1;
                     done = true;
                     Debug.Log("Just equipped " + current.name);
                 }
-
-
+                
             }
         }
 
+        /**
+         * This is a method to check all of our doors if they are being clicked on and if we can open them
+         */
+        private void CheckDoors()
+        {
+            bool openedDoor = false;
+            for (int i = 0; i < doors.Length; i++)
+            {
+                DoorScript currentDoor = doors[i];
+
+                bool done = false;
+
+                Debug.Log("Number of doors: " + doors.Length);
+
+                for (int j = 0; j < equipped.Length && !done; j++)
+                {
+                    Equippable currentEquipped = equipped[j];
+                    if (currentEquipped != null)
+                    {
+                        Debug.Log("Equipped name: " + currentEquipped.name);
+                        Debug.Log("Needed name: " + currentDoor.objectNeeded.name);
+
+                        if (currentEquipped.name == currentDoor.objectNeeded.name)
+                        {
+                            currentDoor.AllowOpen();
+                            openedDoor = true;
+                            done = true;
+                        }
+                    }
+                }
+
+            }
+        }
 
     }
 }
