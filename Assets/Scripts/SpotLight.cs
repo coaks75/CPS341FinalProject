@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpotLight : MonoBehaviour
 {
-
-    Light light;
+    private Light light;
 
     // Start is called before the first frame update
     void Start()
@@ -13,8 +12,8 @@ public class SpotLight : MonoBehaviour
         light = GetComponent<Light>();
         light.enabled = !light.enabled;
         Debug.Log("Turned light off");
-        Debug.Log("Jeff");
-    }
+    } 
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -22,11 +21,15 @@ public class SpotLight : MonoBehaviour
         ToggleLight();
     }
 
+    /**
+     * This is a method used to toggle our light.
+     * It first checks if the conditions have been met
+     */
     void ToggleLight()
     {
-        FlashLight fl = gameObject.GetComponentInParent(typeof(FlashLight)) as FlashLight;
+        Equippable flashlight = gameObject.GetComponentInParent(typeof(Equippable)) as Equippable;
 
-        if (Input.GetKeyDown(KeyCode.F) && fl.getDistanceToPlayer() < fl.distanceNeeded)
+        if (Input.GetKeyDown(KeyCode.F) && flashlight.getDistanceToPlayer() < flashlight.distanceNeeded )
         {
             light.enabled = !light.enabled;
             Debug.Log("Light Toggled");

@@ -97,6 +97,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
         private Vector2 previousStepPosition;                     // This is so we only play a step sound when we are of specified distance away
         public float distanceForStepNoise;
+        public float equipDistance;                               // This is the distance needed to equip something
+        private Equippable[] equippables;                         // This is all of the objects with the tag 'equippable'
+        private Equippable[] equipped;                            // These are all of the equippable objects that we have equipped
 
 
 
@@ -138,9 +141,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             previousStepPosition = new Vector2(transform.position.x, transform.position.z);
 
-            //mouseLook.lockCursor = false;
-
-            Debug.Log("Geoff");
+            equippables = FindObjectsOfType<Equippable>();
 
         }
 
@@ -159,27 +160,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void FixedUpdate()
         {
 
-            ///** Check if we are paused, and if so, lock the mouse cursor. */
-            //if (PauseMenuScript.gameIsPaused)
-            //{
-            //    mouseLook.lockCursor = false;
-            //    Debug.Log("Unlocked cursor");
-            //}
-            //else
-            //{
-            //    mouseLook.lockCursor = true;
-            //    Debug.Log("Cursor locked");
-            //}
-
-            if (Input.GetKeyDown(KeyCode.L))
+            // This checks if we right click the mouse
+            if (Input.GetMouseButtonDown(1))
             {
-                SceneManager.LoadScene("Room2");
+                Equip();
             }
-            if(Input.GetKeyDown(KeyCode.K))
-            {
-                SceneManager.LoadScene("MainRoom");
-            }
-
 
             GroundCheck();
             Vector2 input = GetInput();
@@ -350,6 +335,35 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = false;
             }
         }
+
+
+        /**
+         * This is a method to try and equip a nearby item.
+         */
+         private void Equip()
+        {
+
+            // We will use this variable so that we can only equip one item per click
+            bool done = false;
+
+            for (int i = 0; i < equippables.Length && done == false; i++)
+            {
+                Equippable current = equippables[i];
+
+                if (current.getDistanceToPlayer() < current.distanceNeeded)
+                {
+                    Transform camera = gameObject.transform.GetChild(0);
+                    current.transform.parent = camera;
+                    current.transform.position = camera.position;
+                    current.transform.rotation = camera.rotation;
+                    done = true;
+                    Debug.Log("Just equipped " + current.name);
+                }
+
+
+            }
+        }
+
 
     }
 }

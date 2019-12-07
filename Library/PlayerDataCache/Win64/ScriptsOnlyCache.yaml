@@ -64,31 +64,31 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 19238}
+      Script: {instanceID: 9734}
     - Class: 114
-      Script: {instanceID: 19406}
+      Script: {instanceID: 9900}
     - Class: 114
-      Script: {instanceID: 19452}
+      Script: {instanceID: 9946}
     - Class: 114
-      Script: {instanceID: 19790}
+      Script: {instanceID: 10276}
     - Class: 114
-      Script: {instanceID: 19856}
+      Script: {instanceID: 10340}
     - Class: 114
-      Script: {instanceID: 20000}
+      Script: {instanceID: 10484}
     - Class: 114
-      Script: {instanceID: 20082}
+      Script: {instanceID: 10526}
     - Class: 114
-      Script: {instanceID: 20280}
+      Script: {instanceID: 10562}
     - Class: 114
-      Script: {instanceID: 20290}
+      Script: {instanceID: 10752}
     - Class: 114
-      Script: {instanceID: 20524}
+      Script: {instanceID: 10762}
     - Class: 114
-      Script: {instanceID: 20772}
+      Script: {instanceID: 11002}
     - Class: 114
-      Script: {instanceID: 21154}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 54680}
+      Script: {instanceID: 11616}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -131,25 +131,25 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 19238}
+      Script: {instanceID: 9734}
     - Class: 114
-      Script: {instanceID: 19406}
+      Script: {instanceID: 9900}
     - Class: 114
-      Script: {instanceID: 19452}
+      Script: {instanceID: 9946}
     - Class: 114
-      Script: {instanceID: 19856}
+      Script: {instanceID: 10340}
     - Class: 114
-      Script: {instanceID: 19966}
+      Script: {instanceID: 10452}
     - Class: 114
-      Script: {instanceID: 20280}
+      Script: {instanceID: 10752}
     - Class: 114
-      Script: {instanceID: 20304}
+      Script: {instanceID: 10776}
     - Class: 114
-      Script: {instanceID: 20772}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 21096}
+      Script: {instanceID: 11560}
     - Class: 114
-      Script: {instanceID: 21154}
+      Script: {instanceID: 11616}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -587,6 +587,12 @@ ScriptsOnlyBuild:
     className: TMP_Asset
   - hash:
       serializedVersion: 2
+      Hash: e1ffbcfdd959efa4af40e95cf3221aff
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenuScript
+  - hash:
+      serializedVersion: 2
       Hash: f03168bb2f3505e6cc0ba61aff5d31ab
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Cameras
@@ -845,7 +851,7 @@ ScriptsOnlyBuild:
     className: ActivationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: dba87224a20b97591f0bd6a2cf858f21
+      Hash: 99f1014e53f40179959e82238adaec72
     assemblyName: Assembly-CSharp.dll
     namespaceName: UnityStandardAssets.Characters.FirstPerson
     className: PlayerController
@@ -1137,12 +1143,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: AutoMobileShaderSwitch
-  - hash:
-      serializedVersion: 2
-      Hash: 930b2a7c015542327cee6af349728cdd
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PauseMenuScript
   platform: 19
   scenePathNames:
   - Assets/Scenes/TitleScreen.unity
