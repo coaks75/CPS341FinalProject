@@ -14,10 +14,17 @@ public class Equippable : MonoBehaviour
     /** This is the distance to the player. */
     private float distanceToPlayer;
 
+    /** This is to know if we are equipped. */
+    public bool equipped;
+
+    /** The message to display when we get this item. */
+    public string message;
+
 
     private void Start()
     {
         distanceToPlayer = 0.0f;
+        equipped = false;
     }
 
 

@@ -25,6 +25,8 @@ public class DoorScript : MonoBehaviour
 
     public PlayerController player;
 
+    private int clicks = 0;
+
 
     private void Start()
     {
@@ -41,6 +43,8 @@ public class DoorScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
+            clicks++;
+
             bool doIt = false;
             int numFound = 0;
             string objectsNeededNames = "";
@@ -49,14 +53,30 @@ public class DoorScript : MonoBehaviour
             {
                 if (v != null)
                 {
+                    Debug.Log("Num of objects needed at click " + clicks + " are: " + objectsNeeded.Length);
                     foreach (Equippable e in objectsNeeded)
                     {
                         if (e.name == v.name)
                         {
                             numFound++;
                         }
-                        objectsNeededNames += e.name + ", ";
                     }
+                }
+            }
+
+            for (int i = 0; i < objectsNeeded.Length; i++)
+            {
+                if (i > 0 && i != objectsNeeded.Length - 1)
+                {
+                    objectsNeededNames += ", the " + objectsNeeded[i].name;
+                }
+                else if (i == objectsNeeded.Length - 1 && i != 0)
+                {
+                    objectsNeededNames += ", and the " + objectsNeeded[i].name;
+                }
+                else
+                {
+                    objectsNeededNames += objectsNeeded[i].name;
                 }
             }
 

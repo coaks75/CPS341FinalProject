@@ -21,11 +21,14 @@ public class PauseMenuScript : MonoBehaviour
     private void Start()
     {
         Resume();
+        Debug.Log("Starting pause menu");
     }
 
     void Update()
     {
-        
+
+        Debug.Log("Updating pause menu");
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)

@@ -154,6 +154,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             equipped = new Equippable[equippables.Length];
 
+            Debug.Log("Number of equippables is: " + equippables.Length);
+
             doors = FindObjectsOfType<DoorScript>();
 
             equippedIndex = 0;
@@ -402,17 +404,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 Equippable current = equippables[i];
 
-                if (current.getDistanceToPlayer() < current.distanceNeeded)
+                if (current.getDistanceToPlayer() < current.distanceNeeded && !current.equipped)
                 {
-                    Transform camera = gameObject.transform.GetChild(0);
-                    current.transform.parent = camera;
-                    current.transform.position = camera.position;
-                    current.transform.rotation = camera.rotation;
-                    bool foundIndex = false;
-                    equipped[equippedIndex] = current;
-                    equippedIndex += 1;
+                    // This if statement is so that everything dissapears when we select it, besides the flashlight
+                    if (current.name == "Flashlight")
+                    {
+                        Transform camera = gameObject.transform.GetChild(0);
+                        current.transform.parent = camera;
+                        current.transform.position = camera.position;
+                        current.transform.rotation = camera.rotation;
+                    }
+                    else
+                    {
+                        current.gameObject.SetActive(false);
+                    }
+                    equipped[equippedIndex++] = current;
+                    current.equipped = true;
                     score += current.points;
-                    goodJobText.text = "Nice! You've obtained the " + current.name + " for " + current.points + " points!";
+                    string text = current.message;
+
+                    // JUst check if they player didn't win
+                    // Weird to say how many points the item gave them if they won
+                    if (current.name != "FinalCrystal")
+                    {
+                        text += " This got you " + current.points + " points!";
+                    }
+                    goodJobText.text = text;
                     goodJobText.enabled = true;
                     done = true;
                     Debug.Log("Just equipped " + current.name);
@@ -420,7 +437,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             }
         }
-
 
     }
 }
